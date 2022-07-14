@@ -1,0 +1,14 @@
+body {
+    background-color: #0D0A19;
+    height: 97.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board {
+    height: 500px;
+    width: 500px;
+    background-color: #0f0c1d;
+    border-radius: 5px;
+}
