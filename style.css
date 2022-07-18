@@ -11,4 +11,14 @@ body {
     width: 500px;
     background-color: #0f0c1d;
     border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.array-div {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
