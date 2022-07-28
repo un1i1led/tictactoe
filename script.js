@@ -3,7 +3,9 @@ const Gameboard = (() => {
 
     const boardDiv = document.querySelector('.board');
     const remove = () => {
-        boardDiv.remove();
+        document.querySelectorAll('.array-div').forEach(item => {
+            boardDiv.removeChild(item);
+        });
     };
 
     const display = () => {
@@ -36,17 +38,37 @@ const Game = (() => {
     const player2 = Player('O', 'O');
     let currentPlayer = player1;
 
-    const mark = (item) => {
-        Gameboard.remove();
-        Gameboard.board[0] = currentPlayer.marker;
-        Gameboard.display();
+    const nextPlayer = (current) => {
+        if (current == player1) {
+            return currentPlayer = player2;
+        } else {
+            return currentPlayer = player1;
+        }
     };
 
-    document.querySelectorAll('.array-div').forEach(item => {
-        item.addEventListener('click', function(){
-            mark(item);
-        });
-    });
+    const mark = (item) => {
 
+        if (Gameboard.board[item.dataset.id] != '') {
+            return;
+        } else {
+            Gameboard.remove();
+            Gameboard.board[item.dataset.id] = currentPlayer.marker;
+            nextPlayer(currentPlayer);
+            console.log(Gameboard.board);
+            Gameboard.display();
+            addListeners();
+        }
+        
+    };
+
+    const addListeners = () => {
+        document.querySelectorAll('.array-div').forEach(item => {
+            item.addEventListener('click', function(){
+                mark(item);
+            });
+        });
+    };
+
+    addListeners();
 
 })();
