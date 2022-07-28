@@ -46,6 +46,11 @@ const Game = (() => {
         }
     };
 
+    const displayTurn = (current) => {
+        const turnDiv = document.querySelector('.indicator');
+        turnDiv.innerHTML = `${current.name}'s turn`;
+    }
+
     const mark = (item) => {
 
         if (Gameboard.board[item.dataset.id] != '') {
@@ -54,6 +59,7 @@ const Game = (() => {
             Gameboard.remove();
             Gameboard.board[item.dataset.id] = currentPlayer.marker;
             nextPlayer(currentPlayer);
+            displayTurn(currentPlayer);
             console.log(Gameboard.board);
             Gameboard.display();
             addListeners();
@@ -70,5 +76,6 @@ const Game = (() => {
     };
 
     addListeners();
+    displayTurn(currentPlayer);
 
 })();
