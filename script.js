@@ -18,11 +18,22 @@ const Gameboard = (() => {
         };
     };
 
+    const addListeners = () => {
+        document.querySelectorAll('.array-div').forEach(item => {
+            item.addEventListener('click', function(){
+                Game.mark(item);
+            });
+        });
+    };
+
     display();
+    addListeners();
+    
     return {
         board,
         display,
-        remove
+        remove,
+        addListeners
     }
 })();
 
@@ -38,12 +49,6 @@ const Game = (() => {
     const player2 = Player('O', 'O');
     let currentPlayer = player1;
 
-    const disableBoard = (board) => {
-        board.forEach((element, index) => {
-            board[index] = '-'
-        });
-    };
-
     const checkWin = (board) => {
         const rowOne = board[0] + board[1] + board[2];
         const rowTwo = board[3] + board[4] + board[5];
@@ -57,9 +62,7 @@ const Game = (() => {
         const diagTwo = board[2] + board[4] + board[6];
 
         if (rowOne == 'XXX' || rowOne == 'OOO'){
-            console.log(`${currentPlayer.name} wins`)
-            disableBoard(Gameboard.board);
-            console.log(Gameboard.board);
+            console.log(`${currentPlayer.name} wins`);
         } else if (rowTwo == 'XXX' || rowTwo == 'OOO') {
             alert(`${currentPlayer.name} wins!`);
         } else if (rowThree == 'XXX' || rowThree == 'OOO'){
@@ -100,19 +103,13 @@ const Game = (() => {
             nextPlayer(currentPlayer);
             displayTurn(currentPlayer);
             Gameboard.display();
-            addListeners();
+            Gameboard.addListeners();
         }
     };
-
-    const addListeners = () => {
-        document.querySelectorAll('.array-div').forEach(item => {
-            item.addEventListener('click', function(){
-                mark(item);
-            });
-        });
-    };
-
-    addListeners();
     displayTurn(currentPlayer);
+
+    return {
+        mark
+    }
 
 })();
