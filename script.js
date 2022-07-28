@@ -38,6 +38,45 @@ const Game = (() => {
     const player2 = Player('O', 'O');
     let currentPlayer = player1;
 
+    const disableBoard = (board) => {
+        board.forEach((element, index) => {
+            board[index] = '-'
+        });
+    };
+
+    const checkWin = (board) => {
+        const rowOne = board[0] + board[1] + board[2];
+        const rowTwo = board[3] + board[4] + board[5];
+        const rowThree = board[6] + board[7] + board[8];
+
+        const columnOne = board[0] + board[3] + board[6];
+        const columnTwo = board[1] + board[4] + board[7];
+        const columnThree = board[2] + board[5] + board[8];
+
+        const diagOne = board[0] + board[4] + board[8];
+        const diagTwo = board[2] + board[4] + board[6];
+
+        if (rowOne == 'XXX' || rowOne == 'OOO'){
+            console.log(`${currentPlayer.name} wins`)
+            disableBoard(Gameboard.board);
+            console.log(Gameboard.board);
+        } else if (rowTwo == 'XXX' || rowTwo == 'OOO') {
+            alert(`${currentPlayer.name} wins!`);
+        } else if (rowThree == 'XXX' || rowThree == 'OOO'){
+            alert(`${currentPlayer.name} wins!`);
+        } else if (columnOne == 'XXX' || columnOne == 'OOO') {
+            alert(`${currentPlayer.name} wins!`);
+        } else if (columnTwo == 'XXX' || columnTwo == 'OOO') {
+            alert(`${currentPlayer.name} wins!`);
+        } else if (columnThree == 'XXX' || columnThree == 'OOO') {
+            alert(`${currentPlayer.name} wins!`);
+        } else if (diagOne == 'XXX' || diagOne == 'OOO') {
+            alert(`${currentPlayer.name} wins!`);
+        } else if (diagTwo == 'XXX' || diagTwo == 'OOO') {
+            alert(`${currentPlayer.name} wins!`);
+        } 
+    };
+
     const nextPlayer = (current) => {
         if (current == player1) {
             return currentPlayer = player2;
@@ -52,19 +91,17 @@ const Game = (() => {
     }
 
     const mark = (item) => {
-
         if (Gameboard.board[item.dataset.id] != '') {
             return;
         } else {
             Gameboard.remove();
             Gameboard.board[item.dataset.id] = currentPlayer.marker;
+            checkWin(Gameboard.board);
             nextPlayer(currentPlayer);
             displayTurn(currentPlayer);
-            console.log(Gameboard.board);
             Gameboard.display();
             addListeners();
         }
-        
     };
 
     const addListeners = () => {
