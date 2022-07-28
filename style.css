@@ -1,5 +1,5 @@
 body {
-    background-color: #0D0A19;
+    background-color: #E4E4E7;
     height: 97.5vh;
     display: flex;
     justify-content: center;
@@ -9,16 +9,20 @@ body {
 .board {
     height: 500px;
     width: 500px;
-    background-color: #0f0c1d;
+    background-color: #FAFAFA;
     border-radius: 5px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+    border: 1px solid white;
 }
 
 .array-div {
-    color: white;
+    color: black;
+    font-size: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
+
