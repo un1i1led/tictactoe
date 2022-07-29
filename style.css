@@ -35,3 +35,10 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.btn-restart {
+    margin-top: 10px;
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+}
