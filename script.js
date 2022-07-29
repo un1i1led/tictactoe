@@ -35,11 +35,40 @@ const Player = (name, marker) => {
 };
 
 const Game = (() => {
+    const restartButton = document.querySelector('.btn-restart');
     const turnDiv = document.querySelector('.indicator');
     const player1 = Player('X', 'X');
     const player2 = Player('O', 'O');
     let currentPlayer = player1;
     let won = false;
+
+    const restart = () => {
+        const board = Gameboard.board;
+
+        board.forEach((element, index) => {
+            board[index] = '';
+        });
+
+        if (won == true) {
+            const currentDiv = document.querySelector('.indicator');
+            document.body.removeChild(currentDiv);
+            createIndicator();
+        }
+
+        Gameboard.remove();
+        Gameboard.display();
+        won = false;
+        currentPlayer = player1;
+        displayTurn(currentPlayer);
+        addListeners();
+        console.log(board);
+    }
+
+    const createIndicator = () => {
+        const indicator = document.createElement('div');
+        indicator.className = 'indicator';
+        document.body.prepend(indicator);
+    }
 
     const checkWin = (board) => {
         const rowOne = board[0] + board[1] + board[2];
@@ -123,6 +152,8 @@ const Game = (() => {
             });
         }
     };
+
+    restartButton.addEventListener('click', restart);
 
     displayTurn(currentPlayer);
     addListeners();
