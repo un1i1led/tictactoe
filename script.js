@@ -18,22 +18,12 @@ const Gameboard = (() => {
         };
     };
 
-    const addListeners = () => {
-        document.querySelectorAll('.array-div').forEach(item => {
-            item.addEventListener('click', function(){
-                Game.mark(item);
-            });
-        });
-    };
-
     display();
-    addListeners();
     
     return {
         board,
         display,
         remove,
-        addListeners
     }
 })();
 
@@ -45,9 +35,11 @@ const Player = (name, marker) => {
 };
 
 const Game = (() => {
+    const turnDiv = document.querySelector('.indicator');
     const player1 = Player('X', 'X');
     const player2 = Player('O', 'O');
     let currentPlayer = player1;
+    let won = false;
 
     const checkWin = (board) => {
         const rowOne = board[0] + board[1] + board[2];
@@ -62,21 +54,29 @@ const Game = (() => {
         const diagTwo = board[2] + board[4] + board[6];
 
         if (rowOne == 'XXX' || rowOne == 'OOO'){
-            console.log(`${currentPlayer.name} wins`);
+            displayWinner(currentPlayer);
+            won = true;
         } else if (rowTwo == 'XXX' || rowTwo == 'OOO') {
-            alert(`${currentPlayer.name} wins!`);
+            console.log(`${currentPlayer.name} wins!`);
+            won = true;
         } else if (rowThree == 'XXX' || rowThree == 'OOO'){
             alert(`${currentPlayer.name} wins!`);
+            won = true;
         } else if (columnOne == 'XXX' || columnOne == 'OOO') {
             alert(`${currentPlayer.name} wins!`);
+            won = true;
         } else if (columnTwo == 'XXX' || columnTwo == 'OOO') {
             alert(`${currentPlayer.name} wins!`);
+            won = true;
         } else if (columnThree == 'XXX' || columnThree == 'OOO') {
             alert(`${currentPlayer.name} wins!`);
+            won = true;
         } else if (diagOne == 'XXX' || diagOne == 'OOO') {
             alert(`${currentPlayer.name} wins!`);
+            won = true;
         } else if (diagTwo == 'XXX' || diagTwo == 'OOO') {
             alert(`${currentPlayer.name} wins!`);
+            won = true;
         } 
     };
 
@@ -88,8 +88,15 @@ const Game = (() => {
         }
     };
 
+    const displayWinner = (current) => {
+        turnDiv.remove();
+        const winDiv = document.createElement('div');
+        winDiv.className = 'indicator';
+        winDiv.innerHTML = `${current.name} wins!`;
+        document.body.prepend(winDiv);
+    }
+
     const displayTurn = (current) => {
-        const turnDiv = document.querySelector('.indicator');
         turnDiv.innerHTML = `${current.name}'s turn`;
     }
 
@@ -103,13 +110,21 @@ const Game = (() => {
             nextPlayer(currentPlayer);
             displayTurn(currentPlayer);
             Gameboard.display();
-            Gameboard.addListeners();
+            addListeners();
         }
     };
-    displayTurn(currentPlayer);
 
-    return {
-        mark
-    }
+    const addListeners = () => {
+        if (won == false) {
+            document.querySelectorAll('.array-div').forEach(item => {
+                item.addEventListener('click', function(){
+                    mark(item);
+                });
+            });
+        }
+    };
+
+    displayTurn(currentPlayer);
+    addListeners();
 
 })();
