@@ -57,25 +57,25 @@ const Game = (() => {
             displayWinner(currentPlayer);
             won = true;
         } else if (rowTwo == 'XXX' || rowTwo == 'OOO') {
-            console.log(`${currentPlayer.name} wins!`);
+            displayWinner(currentPlayer);
             won = true;
         } else if (rowThree == 'XXX' || rowThree == 'OOO'){
-            alert(`${currentPlayer.name} wins!`);
+            displayWinner(currentPlayer);
             won = true;
         } else if (columnOne == 'XXX' || columnOne == 'OOO') {
-            alert(`${currentPlayer.name} wins!`);
+            displayWinner(currentPlayer);
             won = true;
         } else if (columnTwo == 'XXX' || columnTwo == 'OOO') {
-            alert(`${currentPlayer.name} wins!`);
+            displayWinner(currentPlayer);
             won = true;
         } else if (columnThree == 'XXX' || columnThree == 'OOO') {
-            alert(`${currentPlayer.name} wins!`);
+            displayWinner(currentPlayer);
             won = true;
         } else if (diagOne == 'XXX' || diagOne == 'OOO') {
-            alert(`${currentPlayer.name} wins!`);
+            displayWinner(currentPlayer);
             won = true;
         } else if (diagTwo == 'XXX' || diagTwo == 'OOO') {
-            alert(`${currentPlayer.name} wins!`);
+            displayWinner(currentPlayer);
             won = true;
         } 
     };
