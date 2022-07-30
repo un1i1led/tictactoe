@@ -59,7 +59,7 @@ const Game = (() => {
         Gameboard.display();
         won = false;
         currentPlayer = player1;
-        displayTurn(currentPlayer);
+        // displayTurn(currentPlayer);
         addListeners();
         console.log(board);
     }
@@ -67,6 +67,7 @@ const Game = (() => {
     const createIndicator = () => {
         const indicator = document.createElement('div');
         indicator.className = 'indicator';
+        displayTurn(currentPlayer);
         document.body.prepend(indicator);
     }
 
@@ -83,50 +84,40 @@ const Game = (() => {
         const diagTwo = board[2] + board[4] + board[6];
 
         if (rowOne == 'XXX' || rowOne == 'OOO'){
-            displayWinner(currentPlayer);
             won = true;
         } else if (rowTwo == 'XXX' || rowTwo == 'OOO') {
-            displayWinner(currentPlayer);
             won = true;
         } else if (rowThree == 'XXX' || rowThree == 'OOO'){
-            displayWinner(currentPlayer);
             won = true;
         } else if (columnOne == 'XXX' || columnOne == 'OOO') {
-            displayWinner(currentPlayer);
             won = true;
         } else if (columnTwo == 'XXX' || columnTwo == 'OOO') {
-            displayWinner(currentPlayer);
             won = true;
         } else if (columnThree == 'XXX' || columnThree == 'OOO') {
-            displayWinner(currentPlayer);
             won = true;
         } else if (diagOne == 'XXX' || diagOne == 'OOO') {
-            displayWinner(currentPlayer);
             won = true;
         } else if (diagTwo == 'XXX' || diagTwo == 'OOO') {
-            displayWinner(currentPlayer);
             won = true;
         } 
     };
 
     const nextPlayer = (current) => {
-        if (current == player1) {
-            return currentPlayer = player2;
-        } else {
-            return currentPlayer = player1;
-        }
+        if (won == false){
+            if (current == player1) {
+                return currentPlayer = player2;
+            } else {
+                return currentPlayer = player1;
+            }
+        } 
     };
 
-    const displayWinner = (current) => {
-        turnDiv.remove();
-        const winDiv = document.createElement('div');
-        winDiv.className = 'indicator';
-        winDiv.innerHTML = `${current.name} wins!`;
-        document.body.prepend(winDiv);
-    }
-
     const displayTurn = (current) => {
-        turnDiv.innerHTML = `${current.name}'s turn`;
+        if (won == false){
+            turnDiv.innerHTML = `${current.name}'s turn`;
+        } else if (won == true) {
+            turnDiv.innerHTML = `${current.name} wins!`;
+        }
     }
 
     const mark = (item) => {
