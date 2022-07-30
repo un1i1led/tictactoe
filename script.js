@@ -49,19 +49,12 @@ const Game = (() => {
             board[index] = '';
         });
 
-        if (won == true) {
-            const currentDiv = document.querySelector('.indicator');
-            document.body.removeChild(currentDiv);
-            createIndicator();
-        }
-
         Gameboard.remove();
         Gameboard.display();
         won = false;
         currentPlayer = player1;
-        // displayTurn(currentPlayer);
+        displayTurn(currentPlayer);
         addListeners();
-        console.log(board);
     }
 
     const createIndicator = () => {
