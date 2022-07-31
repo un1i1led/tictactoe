@@ -2,6 +2,7 @@ const Gameboard = (() => {
     let board = ['', '', '', '', '', '', '', '', ''];
 
     const boardDiv = document.querySelector('.board');
+
     const remove = () => {
         document.querySelectorAll('.array-div').forEach(item => {
             boardDiv.removeChild(item);
@@ -23,7 +24,7 @@ const Gameboard = (() => {
     return {
         board,
         display,
-        remove,
+        remove
     }
 })();
 
