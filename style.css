@@ -12,17 +12,14 @@ body {
 .board {
     height: 500px;
     width: 500px;
-    /* background-color: #31087B; */
     border-radius: 5px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    /* border: 1px solid white; */
 }
 
 .array-div {
     color: white;
-    /* background-color: black; */
     font-size: 70px;
     display: flex;
     align-items: center;
@@ -31,7 +28,7 @@ body {
     font-family: 'Noto Sans JP', sans-serif;
     margin: 20px;
     border-radius: 5%;
-    border: 1px solid white;
+    border: 1px solid #FA2FB5;
 }
 
 .indicator {
@@ -40,7 +37,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #FA2FB5;
+    color: white;
 }
 
 .btn-restart {
